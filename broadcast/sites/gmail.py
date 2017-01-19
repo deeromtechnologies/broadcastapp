@@ -1,15 +1,29 @@
 import smtplib
 class gmail:
-    def __init__(self,username,pswd,msg):
+    def __init__(self,username,pswd):
        self.username=username
        self.pswd=pswd
-       self.msg=msg
     def authentication(self,server):
-      # server=smtplib.SMTP('smtp.gmail.com',587)
        server.starttls()
        server.login(self.username,self.pswd)
-    def messagebro(self,server):
-       server.sendmail(self.msg)
+       return "success"
+    def messagebro(self):
+       server.sendmail(self,msg)
        server.quit()
 
-       
+def mail(message):
+   username="studio4g4@gmail.com"
+   pswd="9633206869"
+   txt=message
+   m=gmail(username,pswd)
+   server=smtplib.SMTP('smtp.gmail.com',587)       
+   try:
+      login=m.authentication(server)
+      if login=="success":
+         send= m.messagebro(txt)
+      else: 
+         send="fail"
+      return send
+   except:
+      return "authentication failed"
+

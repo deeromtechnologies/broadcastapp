@@ -1,0 +1,24 @@
+import facebook
+import requests
+
+access_token="EAACEdEose0cBAOA7qzZBufemYiakQnczqLVJVKL7Nr9sBw5eevkZAosJGubPYccyKGzX5g40BSbgeJnptFLbRyVNaKwD72RqFQly7qDdHZArGSiJfqZCwfRIiXZAlvUvt1fbcQM8Gid5T0ouJ6T3Rh2VdlOwoAk5cf4PgvsDX9z36Q9LjZAib0HIKxryTzlY4ZD"
+user_id="712018825585122"
+class FaceBook:
+    #def __init__(self, username, password):
+     #   self.username = username
+      #  self.password = password
+        
+    #def authenticate(self, username, password):
+        
+     #   return access_token
+
+    def facebook_post(self, message):
+        graph = facebook.GraphAPI(access_token)
+        resp = graph.get_object(user_id)
+        if (graph.put_wall_post(message)):
+            acknw = True
+            return acknw
+
+    
+
+    

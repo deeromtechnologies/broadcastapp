@@ -4,7 +4,9 @@ import Facebook
   #  assert fb.message_sent==True
  
 def test_facebook_post():
-    A = Facebook.FaceBook()
-    message = 'hello world'
+    A = FaceBook()
+    assert A.acknw is true
+    A = .FaceBook('random', 'random')
+    message = 'test post from channels.py'
     acknowledgement = A.facebook_post(message)
     assert acknowledgement is True

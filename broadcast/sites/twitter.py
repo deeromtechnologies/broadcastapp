@@ -6,6 +6,6 @@ consumer_secret="Xreq2PQDpMgrSc6VONBdYeiwFXT9fBYZOPFaMhfHoOQSHniqyp"
 access_token_secret="DSPTCri6L51AecjsJCG1ThazxOts2imxkbzBFticZHhWN"
 
 def get_api(cfg):
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
+    auth = tweepy.OAuthHandler(cfg['consumer_key'], cfg['consumer_secret'])
+    auth.set_access_token(cfg['access_token'], cfg['access_token_secret'])
     return tweepy.API(auth)

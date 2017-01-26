@@ -1,5 +1,11 @@
 import smtplib
-class gmail:
+
+class Broadcast(object):
+   def authentication(self,server):
+      raise errors() 
+   def sendmsg(self,message,server):
+      raise errors()
+class gmail(Broadcast):
     def __init__(self,username,pswd):
        self.username=username
        self.pswd=pswd
@@ -12,7 +18,7 @@ class gmail:
        except smtplib.SMTPAuthenticationError:
           return None
 
-    def messagebro(self,server,username,toaddress,msg):
+    def sendmsg(self,server,username,toaddress,msg):
        server.sendmail(username,toaddress,msg)
        server.quit()
 
@@ -22,7 +28,7 @@ def mail(msg,toaddress):
    mail_obj=gmail(username,pswd)
    server_obj=mail_obj.authentication()
    if server_obj:
-      mail_obj.messagebro(server_obj,username,toaddress,msg)
+      mail_obj.sendmsg(server_obj,username,toaddress,msg)
       return 'success'
    else:
       return 'fail'

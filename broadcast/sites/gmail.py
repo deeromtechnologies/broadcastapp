@@ -22,9 +22,10 @@ class gmail(Broadcast):
        server.sendmail(username,toaddress,msg)
        server.quit()
 
-def mail(msg,toaddress):
-   username="testmailcalicut@gmail.com"
-   pswd="asdasdqwe"
+def mail(msg,key):
+   username=key['from']
+   pswd=key['pswd']
+   toaddress=key['toaddr']
    mail_obj=gmail(username,pswd)
    server_obj=mail_obj.authentication()
    if server_obj:

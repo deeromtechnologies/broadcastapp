@@ -34,3 +34,26 @@ def mail(msg,key):
    else:
       return 'fail'
    
+class Twitter(Broadcast):
+     def __init__(self,consumer_key,consumer_secret,access_token,access_token_secret):
+            self.consumer_key=consumer_key
+            self.consumer_secret=consumer_secret
+            self.access_token=access_token
+            self.access_token_secret=access_token_secret
+     def authentication(self):
+            auth=tweepy.0Authentication(self.consumer_key,self.consumer_secret)
+            auth.set_access_token(self.access_token,self.access_token_secret)
+            api=tweepy.API(auth)
+            return api
+     def sendmsg(self,message,server):
+            server.update_status(status=message)
+def twit(message,key):
+    consumer_key=key['consumer_key']
+    consumer_secret=key['consumer_secret']
+    access_token=key['access_token']
+    access_token_secret=key['access_token_secret']
+    twitter=Twitter(consumer_key,consumer_secret,access_token,access_token_secret)
+    server=twitter.authentication()
+    status=twitter.sendmsg(message,key)
+    return status
+

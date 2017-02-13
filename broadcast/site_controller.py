@@ -9,3 +9,8 @@ def broadcastMessage(message):
       return broadcaststatus
    except:
        return {}  
+    try:
+       broadcaststatus=gmail.twit(message,key)
+       return broadcaststatus
+    except :
+       return {}

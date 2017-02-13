@@ -1,5 +1,9 @@
 import smtplib
-
+import tweepy
+class BroadcastError(Exception):
+     pass
+class AuthenticationError(Exception):
+     pass
 class Broadcast(object):
    def authentication(self,server):
       raise errors() 
@@ -15,7 +19,7 @@ class gmail(Broadcast):
        try:
           server.login(self.username,self.pswd)
           return server
-       except smtplib.SMTPAuthenticationError:
+       except AuthenticationError as exceptn:
           return None
 
     def sendmsg(self,server,username,toaddress,msg):
@@ -41,12 +45,15 @@ class Twitter(Broadcast):
             self.access_token=access_token
             self.access_token_secret=access_token_secret
      def authentication(self):
-            auth=tweepy.0Authentication(self.consumer_key,self.consumer_secret)
+            auth=tweepy.Authentication(self.consumer_key,self.consumer_secret)
             auth.set_access_token(self.access_token,self.access_token_secret)
             api=tweepy.API(auth)
             return api
      def sendmsg(self,message,server):
-            server.update_status(status=message)
+           try:
+               server.update_status(status=message)
+           except tweepy.TweepError as e:
+               raise BroadcastError()
 def twit(message,key):
     consumer_key=key['consumer_key']
     consumer_secret=key['consumer_secret']
@@ -54,6 +61,6 @@ def twit(message,key):
     access_token_secret=key['access_token_secret']
     twitter=Twitter(consumer_key,consumer_secret,access_token,access_token_secret)
     server=twitter.authentication()
-    status=twitter.sendmsg(message,key)
+    status=twitter.sendmsg(message,server)
     return status
 

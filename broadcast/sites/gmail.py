@@ -27,9 +27,9 @@ class gmail(Broadcast):
        server.quit()
 
 def mail(msg,key):
-   username=key['from']
-   pswd=key['pswd']
-   toaddress=key['toaddr']
+   username=key['mail']['from']
+   pswd=key['mail']['pswd']
+   toaddress=key['mail']['toaddr']
    mail_obj=gmail(username,pswd)
    server_obj=mail_obj.authentication()
    if server_obj:
@@ -55,10 +55,10 @@ class Twitter(Broadcast):
            except tweepy.TweepError as e:
                raise BroadcastError()
 def twit(message,key):
-    consumer_key=key['consumer_key']
-    consumer_secret=key['consumer_secret']
-    access_token=key['access_token']
-    access_token_secret=key['access_token_secret']
+    consumer_key=key['twitter']['consumer_key']
+    consumer_secret=key['twitter']['consumer_secret']
+    access_token=key['twitter']['access_token']
+    access_token_secret=key['twitter']['access_token_secret']
     twitter=Twitter(consumer_key,consumer_secret,access_token,access_token_secret)
     server=twitter.authentication()
     status=twitter.sendmsg(message,server)

@@ -1,16 +1,26 @@
 import facebook
 import requests
 
-access_token="EAACEdEose0cBACfeZANohoqX8NsZCOCiE3d2wMKVscIcJvllrZASx5bZAhn5naZCeDUf3p7Fige1FsYoYYxx9nPIK5rrxNIqKIy4NlXzFaMxShPCD08Bc02WG9rlkCTu2iZBciWqriiPu7eBwzJVdZBTl9OGS03zTyzXTqALvOJfJnZBJJrums9YWNQnGV8aejgZD"
-user_id="712018825585122"
-class FaceBook:
+
+class FaceBook():
+
+    def __init__(self,access_token):
+        self.access_token = access_token
+        
+
+    def authentication(self):
+        graph = facebook.GraphAPI(self.access_token)
+        return graph
     
-    def facebook_post(self, message):
-        graph = facebook.GraphAPI(access_token)
-        profile = graph.get_object(user_id)
-        if (graph.put_wall_post(message)):
-            response = True
-            return response
+    def sendmsg(self, message,server):
+        if (server.put_wall_post(message)):
+            success = True
+            return success 
+def fbmessage(message):
+    access_token = "EAACEdEose0cBAOcTOPrs5sTxvuVS8LS6m8v8KPnhTtXNAW9e7oCCMenZC8sS5UT4paJYyrVucFZCHcNWvDGmUMr9SWqqLqlaB6DF8cb4wpaVRFNdXptiRZCqVHylzjFBeFZCq7hVZCZBA13W6Deg2pqwLBfuLUe9Fn3zWWllSObvx2ZCvbydgpIIdFWApumkIoZD"
+    fb=FaceBook(access_token)
+    server=fb.authentication()
+    fb.sendmsg(message,server)
 
     
 

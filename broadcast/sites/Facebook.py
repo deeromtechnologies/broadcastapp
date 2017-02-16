@@ -20,8 +20,8 @@ def fbmessage(message):
     access_token = "EAACEdEose0cBAOcTOPrs5sTxvuVS8LS6m8v8KPnhTtXNAW9e7oCCMenZC8sS5UT4paJYyrVucFZCHcNWvDGmUMr9SWqqLqlaB6DF8cb4wpaVRFNdXptiRZCqVHylzjFBeFZCq7hVZCZBA13W6Deg2pqwLBfuLUe9Fn3zWWllSObvx2ZCvbydgpIIdFWApumkIoZD"
     fb=FaceBook(access_token)
     server=fb.authentication()
-    fb.sendmsg(message,server)
-
+    status=fb.sendmsg(message,server)
+    return status
     
 
     

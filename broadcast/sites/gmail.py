@@ -1,5 +1,7 @@
 import smtplib
 import tweepy
+import facebook
+import requests
 class BroadcastError(Exception):
      pass
 class AuthenticationError(Exception):
@@ -64,3 +66,23 @@ def twit(message,key):
     status=twitter.sendmsg(message,server)
     return status
 
+class FaceBook(Broadcast):
+
+     def __init__(self,access_token):
+          self.access_token = access_token
+        
+
+     def authentication(self):
+          graph = facebook.GraphAPI(self.access_token)
+          return graph
+    
+     def sendmsg(self, message,server):
+          if (server.put_wall_post(message)):
+               success = True
+               return success 
+def fbmessage(message,key):
+     accesstoken=key['facebook']['access_token']
+     fb=FaceBook(access_token)
+     server=fb.authentication()
+     status=fb.sendmsg(message,server)
+     return status
